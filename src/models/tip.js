@@ -4,6 +4,7 @@ const moment = require('moment');
 const { Schema } = mongoose;
 const Tip = new Schema({
     userId: Schema.Types.ObjectId,
+    username: String,
     title: String,
     content: String,
     thumbcount: Number,
@@ -33,9 +34,10 @@ Tip.statics.thumbUp = function({ id, userId }) {
     });
 };
 
-Tip.statics.postTip = function({ userId, title, content }) {
+Tip.statics.postTip = function({ userId, username, title, content }) {
     const tip = new this({
         userId,
+        username,
         title,
         thumbup: 0,
         content,
@@ -57,4 +59,7 @@ Tip.statics.searchByKeyword = function(keyword) {
     return this.find({ title: { $regex: '.*' + keyword + '.*' } }).exec();
 };
 
+Tip.statics.tipDelete = function(del) {
+    return this.remove({ userId: del.userId, title: del.title });
+};
 module.exports = mongoose.model('Tip', Tip);

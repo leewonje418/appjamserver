@@ -8,10 +8,7 @@ function hash(password) {
 }
 
 const Account = new Schema({
-    profile: {
-        nickname: String,
-        thumbnail: { type: String, default: '/static/images/default_thumbnail.png' }
-    },
+    nickname: String,
     id: String,
     accessToken: String
 });
@@ -22,9 +19,7 @@ Account.statics.findByUserId = function(userId) {
 
 Account.statics.localRegister = function({ nickname, id, accessToken }) {
     const account = new this({
-        profile: {
-            nickname
-        },
+        nickname,
         id,
         accessToken
     });

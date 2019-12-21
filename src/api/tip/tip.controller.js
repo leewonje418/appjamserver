@@ -1,4 +1,3 @@
-const Joi = require('joi');
 const Tip = require('models/tip');
 
 exports.getByDate = async(ctx) => {
@@ -73,5 +72,15 @@ exports.searchByKeyword = async(ctx) => {
         ctx.throw(500, e);
     }
     
+    ctx.body = tip;
+};
+
+exports.tipDelete = async(ctx) => {
+    let tip = null;
+    try {
+        tip = await Tip.tipDelete(ctx.request.body);
+    } catch(e) {
+        ctx.throw(500, e);
+    }
     ctx.body = tip;
 };

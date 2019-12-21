@@ -9,4 +9,6 @@ tip.get('/mythumbups/:userId', tipCtrl.myThumbUps);
 tip.get('/getBythumbup', tipCtrl.findByThumbUp);
 tip.get('/searchByKeyword/:keyword', tipCtrl.searchByKeyword);
 tip.post('/postthumbup', tipCtrl.thumbup);
+tip.post('/deletetip', tipCtrl.tipDelete);
+
 module.exports = tip;
